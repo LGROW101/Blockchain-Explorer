@@ -9,7 +9,7 @@ type TopCoin = {
   current_price: number;
   change_24h: number;
   status: string;
-  image: string; 
+  image: string;
 };
 
 type TopCoins = TopCoin[];
@@ -72,7 +72,9 @@ const Home = ({ topCoins }: Props) => {
                 ))}
               </ul>
             ) : (
-              <p className="text-red-500 text-center">Failed to fetch top coins.</p>
+              <p className="text-red-500 text-center">
+                Failed to fetch top coins.
+              </p>
             )}
           </section>
         </div>
@@ -82,11 +84,9 @@ const Home = ({ topCoins }: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const apiUrl = process.env.API_URL || 'http://localhost:3000';
+  const apiUrl = process.env.API_URL || "http://localhost:3000";
   try {
-    const topCoinsResponse = await axios.get(
-      `${apiUrl}/api/coin/top`
-    );
+    const topCoinsResponse = await axios.get(`${apiUrl}/api/coin/top`);
 
     const topCoins = topCoinsResponse.data;
 
